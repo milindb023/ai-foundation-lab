@@ -19,10 +19,11 @@ for index, user in enumerate(active_users, start=1):
 print("Context Block for Active Users:")
 print(context_block)
 
-system_prompt = f"""System Instruction: you are corporate communication assistant, your task is to generate a message for the active users in the database.
-Context: The following users are active in the system:
-{context_block}
-keep tone professional and concise, and address the users by their names in the message.
+system_prompt = f"""System Instruction: you are corporate communication assistant, 
+                                your task is to generate a message for the active users in the database.
+                                Context: The following users are active in the system:
+                                {context_block}
+                                keep tone professional and concise, and address the users by their names in the message.
 """
 print("System Prompt:")
 print(system_prompt)

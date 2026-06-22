@@ -15,7 +15,9 @@ class AgentProfile:
 
 print("Initializing AgentProfile dataclass...")
 
-primary_agent = AgentProfile(agent_name="Corporate Communication Assistant", model_engine="gpt-4", temperature=0.7)
+primary_agent = AgentProfile(agent_name="Corporate Communication Assistant", 
+                            model_engine="gpt-4", 
+                            temperature=0.7)
 print(f"Primary Agent Profile: {primary_agent}")
 
 print("Serializing AgentProfile to JSON...")
@@ -23,9 +25,12 @@ config_filename = "agent_profile_config.json"
 with open(config_filename, 'w') as config_file:
     json.dump(asdict(primary_agent), config_file, indent=4)
 
-print("Configuration sucessflly saved to {config_filename}.")
+print(f"Configuration sucessflly saved to {config_filename}")
 
-def mock_api_call(payload:dict,simulate_timeout:bool=False,simulate_missing_key:bool=False):
+def mock_api_call(payload:dict,
+                    simulate_timeout:bool=False,
+                    simulate_missing_key:bool=False):
+                
     print("Simulating API call with payload:")
     print(json.dumps(payload, indent=4))
     try:
@@ -49,6 +54,7 @@ def mock_api_call(payload:dict,simulate_timeout:bool=False,simulate_missing_key:
     finally:
         print("API call simulation completed.")
 
-    if __name__ == "__main__":
-        mock_api_call(payloads={'data':'test'}, simulate_timeout=True)
-        mock_api_call(payloads={'data':'test'}, simulate_missing_key=True)
+if __name__ == "__main__":
+    mock_api_call(payload={'data':'test'}, simulate_timeout=True)
+    mock_api_call(payload={'data':'test'}, simulate_missing_key=True)
+
