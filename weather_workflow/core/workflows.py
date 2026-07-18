@@ -1,8 +1,9 @@
 import json
 from pydantic import ValidationError
-from .config import get_openrouter_client, MODEL_NAME
-from .schemas import ConceptExplanation
-from .tools import weather_tool_definition, execute_tool
+from ..config.settings import get_openrouter_client, MODEL_NAME
+from ..schemas.explanations import ConceptExplanation
+from ..tools.weather_api import weather_tool_definition
+from ..tools.registry import execute_tool
 
 def run_basic_call(prompt: str) -> str:
     """

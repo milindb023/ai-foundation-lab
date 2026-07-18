@@ -3,10 +3,9 @@ import getpass
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# Load environment variables from a .env file if it exists (checks current working directory, then the script directory)
+# Load environment variables from a .env file if it exists (checks current working directory, then the parent directory of this module)
 load_dotenv()
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
-
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env"))
 
 # Model to be used
 MODEL_NAME = "openai/gpt-4o-mini"

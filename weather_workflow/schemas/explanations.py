@@ -22,12 +22,3 @@ class ConceptExplanation(BaseModel):
         le=1,
         description="Confidence score between 0 and 1",
     )
-
-
-class WeatherToolInput(BaseModel):
-    """
-    Schema for validating weather tool input arguments from the LLM.
-    """
-    location: str = Field(
-        description="Name of the city, for example Kolkata or Paris"
-    )

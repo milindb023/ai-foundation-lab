@@ -6,7 +6,7 @@ from pydantic import ValidationError
 # Add project root directory to the python search path to support relative imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from weather_workflow.workflows import (
+from weather_workflow.core.workflows import (
     run_basic_call,
     run_json_mode,
     run_structured_output,

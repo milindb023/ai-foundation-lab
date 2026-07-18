@@ -1,21 +1,37 @@
 # OpenRouter API & Weather Tool-Calling Workflow
 
-This module is a modular Python implementation of the instructor's Jupyter Colab notebook showing various LLM integration strategies using the OpenRouter API (compatible with the OpenAI Python SDK) and Pydantic validation.
+This module is a modular, enterprise-ready Python implementation of the instructor's Jupyter Colab notebook showing various LLM integration strategies using the OpenRouter API (compatible with the OpenAI Python SDK) and Pydantic validation.
 
 ## Directory Structure
+
+To allow for easy future expansion (e.g., adding more LLM tools, new schemas, or configuration sources), the project is structured as a set of nested Python packages:
 
 ```text
 weather_workflow/
 │
-├── .env.example        # Template for API keys configuration
-├── README.md           # This documentation file
-├── requirements.txt    # Python library requirements
+├── config/              # Configuration package
+│   ├── __init__.py
+│   └── settings.py      # Dynamic environment loaders and OpenAI client config
 │
-├── config.py           # API configuration, key loaders, and OpenAI client setup
-├── schemas.py          # Pydantic schemas (ConceptExplanation and WeatherToolInput)
-├── tools.py            # External API integrations (OpenWeather) and tool registry
-├── workflows.py        # Core workflow loops (basic call, JSON mode, structured outputs, agent tool loop)
-└── main.py             # CLI application to run and test all workflows
+├── schemas/             # Pydantic validation schemas
+│   ├── __init__.py
+│   ├── explanations.py  # ConceptExplanation schema
+│   └── weather.py       # WeatherToolInput schema
+│
+├── tools/               # External APIs and integration utilities
+│   ├── __init__.py
+│   ├── weather_api.py   # OpenWeather integration and LLM tool description
+│   └── registry.py      # Central tool registry router mapping LLM tool actions to python
+│
+├── core/                # Core workflows package
+│   ├── __init__.py
+│   └── workflows.py     # Main LLM execution flows (basic, JSON, Structured, Tool-calling)
+│
+├── .env.example         # Template for API keys configuration
+├── .env                 # Local API keys (ignored by git)
+├── README.md            # This documentation file
+├── requirements.txt     # Python library requirements
+└── main.py              # CLI entry point to run workflows interactively
 ```
 
 ## Setup Instructions
