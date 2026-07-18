@@ -1,6 +1,8 @@
 import os
 import getpass
+# pyrefly: ignore [missing-import]
 from openai import OpenAI
+# pyrefly: ignore [missing-import]
 from dotenv import load_dotenv
 
 # Load environment variables from a .env file if it exists (checks current working directory, then the parent directory of this module)
