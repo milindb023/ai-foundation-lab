@@ -1,0 +1,41 @@
+# Compiled python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Vector database persistence
+faiss_index/
+*.index
+*.pkl
+
+# Log files
+*.log
+logs/
+*.jsonl
+
+# Environment variables (secret keys)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Node packages
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js build output
+.next/
+out/
+build/
+
+# Operating system files
+.DS_Store
+Thumbs.db

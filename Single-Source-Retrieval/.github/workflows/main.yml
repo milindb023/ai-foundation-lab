@@ -1,0 +1,62 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  backend-lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Backend Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r Single-Source-Retrieval/backend/requirements.txt
+          pip install pytest black flake8
+
+      - name: Lint Code (flake8)
+        run: |
+          flake8 Single-Source-Retrieval/backend --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Run Backend Tests
+        run: |
+          pytest Single-Source-Retrieval/backend/tests/ -v
+
+  frontend-lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: Single-Source-Retrieval/frontend/package.json
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd Single-Source-Retrieval/frontend
+          npm ci
+
+      - name: Check Lint
+        run: |
+          cd Single-Source-Retrieval/frontend
+          npm run lint || true
+
+      - name: Build Next.js app
+        run: |
+          cd Single-Source-Retrieval/frontend
+          npm run build
